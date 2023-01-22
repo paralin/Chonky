@@ -57,7 +57,7 @@ export const ToolbarDropdownButton = React.forwardRef(
     }
 );
 
-const useStyles = makeGlobalChonkyStyles(theme => ({
+const useStyles = makeGlobalChonkyStyles((theme) => ({
     baseButton: {
         lineHeight: important(theme.toolbar.lineHeight),
         height: important(theme.toolbar.size),
@@ -102,7 +102,11 @@ export const SmartToolbarDropdownButton = React.forwardRef(
         if (!action) return null;
         const { button } = action;
         if (!button) return null;
-        if (action.customVisibility !== undefined && action.customVisibility() === CustomVisibilityState.Hidden) return null;
+        if (
+            action.customVisibility !== undefined &&
+            action.customVisibility() === CustomVisibilityState.Hidden
+        )
+            return null;
 
         return (
             <ToolbarDropdownButton

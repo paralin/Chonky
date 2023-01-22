@@ -1,13 +1,23 @@
 import { reduxActions } from '../redux/reducers';
 import {
-    getFileData, getIsFileSelected, selectDisableSelection, selectors, selectParentFolder,
-    selectSelectionSize
+    getFileData,
+    getIsFileSelected,
+    selectDisableSelection,
+    selectors,
+    selectParentFolder,
+    selectSelectionSize,
 } from '../redux/selectors';
 import { reduxThunks } from '../redux/thunks';
 import { thunkRequestFileAction } from '../redux/thunks/dispatchers.thunks';
 import {
-    ChangeSelectionPayload, EndDragNDropPayload, KeyboardClickFilePayload, MouseClickFilePayload,
-    MoveFilesPayload, OpenFileContextMenuPayload, OpenFilesPayload, StartDragNDropPayload
+    ChangeSelectionPayload,
+    EndDragNDropPayload,
+    KeyboardClickFilePayload,
+    MouseClickFilePayload,
+    MoveFilesPayload,
+    OpenFileContextMenuPayload,
+    OpenFilesPayload,
+    StartDragNDropPayload,
 } from '../types/action-payloads.types';
 import { ChonkyIconName } from '../types/icons.types';
 import { FileHelper } from '../util/file-helper';
@@ -60,7 +70,9 @@ export const EssentialActions = {
                         );
                     } else if (payload.shiftKey) {
                         // Range selection
-                        const lastClickIndex = selectors.getLastClickIndex(getReduxState());
+                        const lastClickIndex = selectors.getLastClickIndex(
+                            getReduxState()
+                        );
                         if (typeof lastClickIndex === 'number') {
                             // We have the index of the previous click
                             let rangeStart = lastClickIndex;
@@ -69,7 +81,9 @@ export const EssentialActions = {
                                 [rangeStart, rangeEnd] = [rangeEnd, rangeStart];
                             }
 
-                            reduxDispatch(reduxThunks.selectRange({ rangeStart, rangeEnd }));
+                            reduxDispatch(
+                                reduxThunks.selectRange({ rangeStart, rangeEnd })
+                            );
                         } else {
                             // Since we can't do a range selection, do a
                             // multiple selection
@@ -191,7 +205,8 @@ export const EssentialActions = {
             }
 
             const { draggedFile, selectedFiles } = payload as EndDragNDropPayload;
-            const droppedFiles = selectedFiles.length > 0 ? selectedFiles : [draggedFile];
+            const droppedFiles =
+                selectedFiles.length > 0 ? selectedFiles : [draggedFile];
             reduxDispatch(
                 thunkRequestFileAction(ChonkyActions.MoveFiles, {
                     ...payload,

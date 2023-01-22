@@ -4,18 +4,17 @@
  * @license MIT
  */
 
-import Menu from '@material-ui/core/Menu';
+import {Menu} from '@mantine/core';
 import React, { useCallback, useMemo } from 'react';
 
 import { FileActionGroup } from '../../types/action-menus.types';
 import { useLocalizedFileActionGroup } from '../../util/i18n';
-import { important, makeGlobalChonkyStyles } from '../../util/styles';
 import { ToolbarButton } from './ToolbarButton';
 import { SmartToolbarDropdownButton } from './ToolbarDropdownButton';
 
 export type ToolbarDropdownProps = FileActionGroup;
 
-export const ToolbarDropdown: React.FC<ToolbarDropdownProps> = React.memo(props => {
+export const ToolbarDropdown: React.FC<ToolbarDropdownProps> = React.memo((props) => {
     const { name, fileActionIds } = props;
     const [anchor, setAnchor] = React.useState<null | HTMLElement>(null);
 
@@ -27,7 +26,7 @@ export const ToolbarDropdown: React.FC<ToolbarDropdownProps> = React.memo(props 
 
     const menuItemComponents = useMemo(
         () =>
-            fileActionIds.map(id => (
+            fileActionIds.map((id) => (
                 <SmartToolbarDropdownButton
                     key={`menu-item-${id}`}
                     fileActionId={id}
@@ -38,29 +37,16 @@ export const ToolbarDropdown: React.FC<ToolbarDropdownProps> = React.memo(props 
     );
 
     const localizedName = useLocalizedFileActionGroup(name);
-    const classes = useStyles();
     return (
         <>
             <ToolbarButton text={localizedName} onClick={handleClick} dropdown={true} />
             <Menu
-                autoFocus
-                keepMounted
-                elevation={2}
-                anchorEl={anchor}
                 onClose={handleClose}
-                open={Boolean(anchor)}
+                opened={Boolean(anchor)}
                 transitionDuration={150}
-                classes={{ list: classes.dropdownList }}
             >
                 {menuItemComponents}
             </Menu>
         </>
     );
 });
-
-const useStyles = makeGlobalChonkyStyles(() => ({
-    dropdownList: {
-        paddingBottom: important(0),
-        paddingTop: important(0),
-    },
-}));

@@ -12,7 +12,8 @@ import { FileHelper } from '../util/file-helper';
 
 // Raw selectors
 export const selectInstanceId = (state: RootState) => state.instanceId;
-export const selectExternalFileActionHandler = (state: RootState) => state.externalFileActionHandler;
+export const selectExternalFileActionHandler = (state: RootState) =>
+    state.externalFileActionHandler;
 
 export const selectFileActionMap = (state: RootState) => state.fileActionMap;
 export const selectFileActionIds = (state: RootState) => state.fileActionIds;
@@ -24,12 +25,14 @@ export const selectContextMenuItems = (state: RootState) => state.contextMenuIte
 export const selectFolderChain = (state: RootState) => state.folderChain;
 export const selectCurrentFolder = (state: RootState) => {
     const folderChain = selectFolderChain(state);
-    const currentFolder = folderChain.length > 0 ? folderChain[folderChain.length - 1] : null;
+    const currentFolder =
+        folderChain.length > 0 ? folderChain[folderChain.length - 1] : null;
     return currentFolder;
 };
 export const selectParentFolder = (state: RootState) => {
     const folderChain = selectFolderChain(state);
-    const parentFolder = folderChain.length > 1 ? folderChain[folderChain.length - 2] : null;
+    const parentFolder =
+        folderChain.length > 1 ? folderChain[folderChain.length - 2] : null;
     return parentFolder;
 };
 
@@ -40,29 +43,35 @@ export const selectFileData = (fileId: Nullable<string>) => (state: RootState) =
     fileId ? selectFileMap(state)[fileId] : null;
 
 export const selectHiddenFileIdMap = (state: RootState) => state.hiddenFileIdMap;
-export const selectHiddenFileCount = (state: RootState) => Object.keys(selectHiddenFileIdMap(state)).length;
+export const selectHiddenFileCount = (state: RootState) =>
+    Object.keys(selectHiddenFileIdMap(state)).length;
 
 export const selectFocusSearchInput = (state: RootState) => state.focusSearchInput;
 export const selectSearchString = (state: RootState) => state.searchString;
 
 export const selectSelectionMap = (state: RootState) => state.selectionMap;
-export const selectSelectedFileIds = (state: RootState) => Object.keys(selectSelectionMap(state));
-export const selectSelectionSize = (state: RootState) => selectSelectedFileIds(state).length;
+export const selectSelectedFileIds = (state: RootState) =>
+    Object.keys(selectSelectionMap(state));
+export const selectSelectionSize = (state: RootState) =>
+    selectSelectedFileIds(state).length;
 export const selectIsFileSelected = (fileId: Nullable<string>) => (state: RootState) =>
     !!fileId && !!selectSelectionMap(state)[fileId];
 export const selectSelectedFiles = (state: RootState) => {
     const fileMap = selectFileMap(state);
-    return Object.keys(selectSelectionMap(state)).map(id => fileMap[id]);
+    return Object.keys(selectSelectionMap(state)).map((id) => fileMap[id]);
 };
-export const selectSelectedFilesForAction = (fileActionId: string) => (state: RootState) => {
+export const selectSelectedFilesForAction = (fileActionId: string) => (
+    state: RootState
+) => {
     const { fileActionMap } = state;
     const action = fileActionMap[fileActionId];
     if (!action || !action.requiresSelection) return undefined;
 
     return getSelectedFiles(state, action.fileFilter);
 };
-export const selectSelectedFilesForActionCount = (fileActionId: string) => (state: RootState) =>
-    getSelectedFilesForAction(state, fileActionId)?.length;
+export const selectSelectedFilesForActionCount = (fileActionId: string) => (
+    state: RootState
+) => getSelectedFilesForAction(state, fileActionId)?.length;
 export const selectDisableSelection = (state: RootState) => state.disableSelection;
 
 export const selectFileViewConfig = (state: RootState) => state.fileViewConfig;
@@ -71,12 +80,14 @@ export const selectSortActionId = (state: RootState) => state.sortActionId;
 export const selectSortOrder = (state: RootState) => state.sortOrder;
 
 export const selectOptionMap = (state: RootState) => state.optionMap;
-export const selectOptionValue = (optionId: string) => (state: RootState) => selectOptionMap(state)[optionId];
+export const selectOptionValue = (optionId: string) => (state: RootState) =>
+    selectOptionMap(state)[optionId];
 
 export const selectThumbnailGenerator = (state: RootState) => state.thumbnailGenerator;
 export const selectDoubleClickDelay = (state: RootState) => state.doubleClickDelay;
 export const selectIsDnDDisabled = (state: RootState) => state.disableDragAndDrop;
-export const selectClearSelectionOnOutsideClick = (state: RootState) => state.clearSelectionOnOutsideClick;
+export const selectClearSelectionOnOutsideClick = (state: RootState) =>
+    state.clearSelectionOnOutsideClick;
 
 export const selectContextMenuMounted = (state: RootState) => state.contextMenuMounted;
 export const selectContextMenuConfig = (state: RootState) => state.contextMenuConfig;
@@ -100,11 +111,15 @@ const _getLastClick = (state: RootState) => state.lastClick;
 
 // Memoized selectors
 const makeGetAction = (fileActionSelector: (state: RootState) => Nullable<string>) =>
-    createSelector([getFileActionMap, fileActionSelector], (fileActionMap, fileActionId) =>
-        fileActionId && fileActionMap[fileActionId] ? fileActionMap[fileActionId] : null
+    createSelector(
+        [getFileActionMap, fileActionSelector],
+        (fileActionMap, fileActionId) =>
+            fileActionId && fileActionMap[fileActionId]
+                ? fileActionMap[fileActionId]
+                : null
     );
 const makeGetOptionValue = (optionId: string, defaultValue: any = undefined) =>
-    createSelector([getOptionMap], optionMap => {
+    createSelector([getOptionMap], (optionMap) => {
         const value = optionMap[optionId];
         if (value === undefined) {
             return defaultValue;
@@ -114,7 +129,10 @@ const makeGetOptionValue = (optionId: string, defaultValue: any = undefined) =>
 const makeGetFiles = (fileIdsSelector: (state: RootState) => Nullable<string>[]) =>
     createSelector(
         [getFileMap, fileIdsSelector],
-        (fileMap, fileIds): FileArray => fileIds.map(fileId => (fileId && fileMap[fileId] ? fileMap[fileId] : null))
+        (fileMap, fileIds): FileArray =>
+            fileIds.map((fileId) =>
+                fileId && fileMap[fileId] ? fileMap[fileId] : null
+            )
     );
 const getSortedFileIds = createSelector(
     [
@@ -131,7 +149,9 @@ const getSortedFileIds = createSelector(
             return fileIds;
         }
 
-        const prepareSortKeySelector = (selector: FileSortKeySelector) => (file: Nullable<FileData>) => selector(file);
+        const prepareSortKeySelector = (selector: FileSortKeySelector) => (
+            file: Nullable<FileData>
+        ) => selector(file);
 
         const sortFunctions: {
             asc?: (file: FileData) => any;
@@ -156,25 +176,30 @@ const getSortedFileIds = createSelector(
         // We copy the array because `fast-sort` mutates it
         const sortedFileIds = sort([...files])
             .by(sortFunctions as any)
-            .map(file => (file ? file.id : null));
+            .map((file) => (file ? file.id : null));
         return sortedFileIds;
     }
 );
 const getSearcher = createSelector(
     [makeGetFiles(getCleanFileIds)],
-    cleanFiles => new FuzzySearch(cleanFiles as FileData[], ['name'], { caseSensitive: false })
+    (cleanFiles) =>
+        new FuzzySearch(cleanFiles as FileData[], ['name'], { caseSensitive: false })
 );
 const getSearchFilteredFileIds = createSelector(
     [getCleanFileIds, getSearchString, getSearcher],
     (cleanFileIds, searchString, searcher) =>
-        searchString ? searcher.search(searchString).map(f => f.id) : cleanFileIds
+        searchString ? searcher.search(searchString).map((f) => f.id) : cleanFileIds
 );
 const getHiddenFileIdMap = createSelector(
-    [getSearchFilteredFileIds, makeGetFiles(getCleanFileIds), makeGetOptionValue(OptionIds.ShowHiddenFiles)],
+    [
+        getSearchFilteredFileIds,
+        makeGetFiles(getCleanFileIds),
+        makeGetOptionValue(OptionIds.ShowHiddenFiles),
+    ],
     (searchFilteredFileIds, cleanFiles, showHiddenFiles) => {
         const searchFilteredFileIdsSet = new Set(searchFilteredFileIds);
         const hiddenFileIdMap: any = {};
-        cleanFiles.forEach(file => {
+        cleanFiles.forEach((file) => {
             if (!file) return;
             else if (!searchFilteredFileIdsSet.has(file.id)) {
                 // Hidden by seach
@@ -190,7 +215,8 @@ const getHiddenFileIdMap = createSelector(
 const getDisplayFileIds = createSelector(
     [getSortedFileIds, getHiddenFileIdMap],
     /** Returns files that will actually be shown to the user. */
-    (sortedFileIds, hiddenFileIdMap) => sortedFileIds.filter(id => !id || !hiddenFileIdMap[id])
+    (sortedFileIds, hiddenFileIdMap) =>
+        sortedFileIds.filter((id) => !id || !hiddenFileIdMap[id])
 );
 const getLastClickIndex = createSelector(
     [_getLastClick, getSortedFileIds],
@@ -241,10 +267,13 @@ export const getIsFileSelected = (state: RootState, file: FileData) => {
     //     reflect the state of Redux store accurately.
     return !!selectSelectionMap(state)[file.id];
 };
-export const getSelectedFiles = (state: RootState, ...filters: Nilable<FileFilter>[]) => {
+export const getSelectedFiles = (
+    state: RootState,
+    ...filters: Nilable<FileFilter>[]
+) => {
     const { fileMap, selectionMap } = state;
 
-    const selectedFiles = Object.keys(selectionMap).map(id => fileMap[id]);
+    const selectedFiles = Object.keys(selectionMap).map((id) => fileMap[id]);
     const filteredSelectedFiles = filters.reduce(
         (prevFiles, filter) => (filter ? prevFiles.filter(filter) : prevFiles),
         selectedFiles

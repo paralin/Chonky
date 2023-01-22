@@ -1,5 +1,5 @@
-import { Theme as MuiTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { MantineTheme } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import classnames from 'classnames';
 import { createUseStyles } from 'react-jss';
 import { DeepPartial } from 'tsdef';
@@ -119,19 +119,19 @@ export const getStripeGradient = (colorOne: string, colorTwo: string) =>
     ')';
 
 export const makeLocalChonkyStyles = <C extends string = string>(
-    styles: (theme: ChonkyTheme & MuiTheme) => any
+    styles: (theme: ChonkyTheme & MantineTheme) => any
     // @ts-ignore
 ): any => createUseStyles<ChonkyTheme, C>(styles);
 
 export const makeGlobalChonkyStyles = <C extends string = string>(
-    makeStyles: (theme: ChonkyTheme & MuiTheme) => any
+    makeStyles: (theme: ChonkyTheme & MantineTheme) => any
 ) => {
     const selectorMapping = {};
     const makeGlobalStyles = (theme: ChonkyTheme) => {
         const localStyles = makeStyles(theme as any);
         const globalStyles = {};
         const localSelectors = Object.keys(localStyles);
-        localSelectors.map(localSelector => {
+        localSelectors.map((localSelector) => {
             const globalSelector = `chonky-${localSelector}`;
             const jssSelector = `@global .${globalSelector}`;
             // @ts-ignore
@@ -147,7 +147,7 @@ export const makeGlobalChonkyStyles = <C extends string = string>(
     return (...args: any[]): any => {
         const styles = useStyles(...args);
         const classes = {};
-        Object.keys(selectorMapping).map(localSelector => {
+        Object.keys(selectorMapping).map((localSelector) => {
             // @ts-ignore
             classes[localSelector] = selectorMapping[localSelector];
         });

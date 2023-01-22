@@ -4,11 +4,11 @@ import * as ReactDOM from 'react-dom';
 import { FullFileBrowser } from '../.';
 
 const App = () => {
-  return (
-    <div style={{ height: 400 }}>
-      <FullFileBrowser />
-    </div>
-  );
+    return (
+        <div style={{ height: 400 }}>
+            <FullFileBrowser />
+        </div>
+    );
 };
 
 ReactDOM.render(<App />, document.getElementById('root'));

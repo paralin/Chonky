@@ -122,8 +122,8 @@ export type FileActionEffect<Action extends FileAction = any> = (data: {
 export type FileActionMap = { [actonId: string]: FileAction };
 
 export enum CustomVisibilityState {
-    Hidden, 
-    Disabled, 
+    Hidden,
+    Disabled,
     Default,
-    Active
-};
+    Active,
+}

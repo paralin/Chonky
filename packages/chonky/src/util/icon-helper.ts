@@ -13,7 +13,9 @@ import { ChonkyIconPlaceholder } from '../components/internal/ChonkyIconPlacehol
 import { FileData } from '../types/file.types';
 import { ChonkyIconName, ChonkyIconProps, FileIconData } from '../types/icons.types';
 
-export const ChonkyIconContext = createContext<ElementType<ChonkyIconProps>>(ChonkyIconPlaceholder);
+export const ChonkyIconContext = createContext<ElementType<ChonkyIconProps>>(
+    ChonkyIconPlaceholder
+);
 
 export const VideoExtensions: string[] = [
     '3g2',
@@ -381,12 +383,41 @@ const getIconTrie = () => {
         [ChonkyIconName.license, ['license']],
         [ChonkyIconName.config, ['sfk', 'ini', 'yml', 'toml', 'iml']],
         [ChonkyIconName.model, ['3ds', 'obj', 'ply', 'fbx']],
-        [ChonkyIconName.database, ['csv', 'json', 'sql', 'sqlite', 'sqlite3', 'npy', 'npz', 'rec', 'idx', 'hdf5']],
+        [
+            ChonkyIconName.database,
+            [
+                'csv',
+                'json',
+                'sql',
+                'sqlite',
+                'sqlite3',
+                'npy',
+                'npz',
+                'rec',
+                'idx',
+                'hdf5',
+            ],
+        ],
         [ChonkyIconName.text, ['txt', 'md', 'mdx']],
         [ChonkyIconName.archive, ['zip', 'rar', 'tar', 'tar.gz', '7z']],
         [ChonkyIconName.image, ImageExtensions],
         [ChonkyIconName.video, VideoExtensions],
-        [ChonkyIconName.code, ['html', 'php', 'css', 'sass', 'scss', 'less', 'cpp', 'h', 'hpp', 'c', 'xml']],
+        [
+            ChonkyIconName.code,
+            [
+                'html',
+                'php',
+                'css',
+                'sass',
+                'scss',
+                'less',
+                'cpp',
+                'h',
+                'hpp',
+                'c',
+                'xml',
+            ],
+        ],
         [ChonkyIconName.info, ['bib', 'readme', 'nfo']],
         [ChonkyIconName.key, ['pem', 'pub']],
         [ChonkyIconName.lock, ['lock', 'lock.json', 'shrinkwrap.json']],

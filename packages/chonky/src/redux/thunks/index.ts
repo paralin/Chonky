@@ -14,7 +14,9 @@ export const reduxThunks = {
         const displayFileIds = selectors.getDisplayFileIds(state);
         const fileIdsToSelect = displayFileIds
             .slice(params.rangeStart, params.rangeEnd + 1)
-            .filter(id => id && FileHelper.isSelectable(state.fileMap[id])) as string[];
+            .filter(
+                (id) => id && FileHelper.isSelectable(state.fileMap[id])
+            ) as string[];
         dispatch(
             reduxActions.selectFiles({
                 fileIds: fileIdsToSelect,

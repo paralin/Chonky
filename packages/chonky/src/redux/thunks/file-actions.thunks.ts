@@ -1,13 +1,22 @@
 import { Nilable } from 'tsdef';
 
-import { ChonkyActions, DefaultFileActions, EssentialFileActions } from '../../action-definitions/index';
+import {
+    ChonkyActions,
+    DefaultFileActions,
+    EssentialFileActions,
+} from '../../action-definitions/index';
 import { FileActionGroup, FileActionMenuItem } from '../../types/action-menus.types';
 import { FileAction } from '../../types/action.types';
 import { ChonkyThunk } from '../../types/redux.types';
 import { SortOrder } from '../../types/sort.types';
 import { sanitizeInputArray } from '../files-transforms';
 import { reduxActions } from '../reducers';
-import { selectCleanFileIds, selectFileMap, selectHiddenFileIdMap, selectSelectionMap } from '../selectors';
+import {
+    selectCleanFileIds,
+    selectFileMap,
+    selectHiddenFileIdMap,
+    selectSelectionMap,
+} from '../selectors';
 
 /**
  * Merges multiple file action arrays into one while removing duplicates
@@ -17,7 +26,7 @@ const mergeFileActionsArrays = (...fileActionArrays: FileAction[][]): FileAction
     const addToSeen = (a: FileAction) => !!seenActionIds.add(a.id);
     const wasNotSeen = (a: FileAction) => !seenActionIds.has(a.id);
 
-    const duplicateFreeArrays = fileActionArrays.map(arr => {
+    const duplicateFreeArrays = fileActionArrays.map((arr) => {
         const duplicateFreeArray = arr.filter(wasNotSeen);
         duplicateFreeArray.map(addToSeen);
         return duplicateFreeArray;
@@ -28,23 +37,34 @@ const mergeFileActionsArrays = (...fileActionArrays: FileAction[][]): FileAction
 export const thunkUpdateRawFileActions = (
     rawFileActions: FileAction[] | any,
     disableDefaultFileActions: Nilable<boolean | string[]>
-): ChonkyThunk => dispatch => {
-    const { sanitizedArray, errorMessages } = sanitizeInputArray('fileActions', rawFileActions);
+): ChonkyThunk => (dispatch) => {
+    const { sanitizedArray, errorMessages } = sanitizeInputArray(
+        'fileActions',
+        rawFileActions
+    );
 
     // Add default actions unless user disabled them
     let defaultActionsToAdd: FileAction[];
     if (Array.isArray(disableDefaultFileActions)) {
         const disabledActionIds = new Set(disableDefaultFileActions);
-        defaultActionsToAdd = DefaultFileActions.filter(action => !disabledActionIds.has(action.id));
+        defaultActionsToAdd = DefaultFileActions.filter(
+            (action) => !disabledActionIds.has(action.id)
+        );
     } else if (disableDefaultFileActions) {
         defaultActionsToAdd = [];
     } else {
         defaultActionsToAdd = DefaultFileActions;
     }
 
-    const fileActions = mergeFileActionsArrays(sanitizedArray, EssentialFileActions, defaultActionsToAdd);
+    const fileActions = mergeFileActionsArrays(
+        sanitizedArray,
+        EssentialFileActions,
+        defaultActionsToAdd
+    );
     const optionDefaults: any = {};
-    fileActions.map(a => (a.option ? (optionDefaults[a.option.id] = a.option.defaultValue) : null));
+    fileActions.map((a) =>
+        a.option ? (optionDefaults[a.option.id] = a.option.defaultValue) : null
+    );
 
     dispatch(reduxActions.setRawFileActions(rawFileActions));
     dispatch(reduxActions.setFileActionsErrorMessages(errorMessages));
@@ -53,7 +73,9 @@ export const thunkUpdateRawFileActions = (
     dispatch(thunkUpdateToolbarNContextMenuItems(fileActions));
 };
 
-export const thunkUpdateToolbarNContextMenuItems = (fileActions: FileAction[]): ChonkyThunk => dispatch => {
+export const thunkUpdateToolbarNContextMenuItems = (
+    fileActions: FileAction[]
+): ChonkyThunk => (dispatch) => {
     const excludedToolbarFileActionIds = new Set<string>([
         // TODO: Move decision to exclude actions somewhere else, as users' custom
         //  components might not give these actions special treatment like Chonky does.
@@ -68,7 +90,11 @@ export const thunkUpdateToolbarNContextMenuItems = (fileActions: FileAction[]): 
     const contextMenuItems: FileActionMenuItem[] = [];
     const seenContextMenuGroups: SeenGroupMap = {};
 
-    const getGroup = (itemArray: FileActionMenuItem[], seenMap: SeenGroupMap, groupName: string): FileActionGroup => {
+    const getGroup = (
+        itemArray: FileActionMenuItem[],
+        seenMap: SeenGroupMap,
+        groupName: string
+    ): FileActionGroup => {
         if (seenMap[groupName]) return seenMap[groupName];
         const group: FileActionGroup = { name: groupName, fileActionIds: [] };
         itemArray.push(group);
@@ -91,7 +117,11 @@ export const thunkUpdateToolbarNContextMenuItems = (fileActions: FileAction[]): 
 
         if (button.contextMenu) {
             if (button.group) {
-                const group = getGroup(contextMenuItems, seenContextMenuGroups, button.group);
+                const group = getGroup(
+                    contextMenuItems,
+                    seenContextMenuGroups,
+                    button.group
+                );
                 group.fileActionIds.push(action.id);
             } else {
                 contextMenuItems.push(action.id);
@@ -102,10 +132,9 @@ export const thunkUpdateToolbarNContextMenuItems = (fileActions: FileAction[]): 
     dispatch(reduxActions.updateFileActionMenuItems([toolbarItems, contextMenuItems]));
 };
 
-export const thunkUpdateDefaultFileViewActionId = (fileActionId: Nilable<string>): ChonkyThunk => (
-    dispatch,
-    getState
-) => {
+export const thunkUpdateDefaultFileViewActionId = (
+    fileActionId: Nilable<string>
+): ChonkyThunk => (dispatch, getState) => {
     const { fileActionMap } = getState();
     const action = fileActionId ? fileActionMap[fileActionId] : null;
     if (action && action.fileViewConfig) {
@@ -113,10 +142,17 @@ export const thunkUpdateDefaultFileViewActionId = (fileActionId: Nilable<string>
     }
 };
 
-export const thunkActivateSortAction = (fileActionId: Nilable<string>): ChonkyThunk => (dispatch, getState) => {
+export const thunkActivateSortAction = (fileActionId: Nilable<string>): ChonkyThunk => (
+    dispatch,
+    getState
+) => {
     if (!fileActionId) return;
 
-    const { sortActionId: oldActionId, sortOrder: oldOrder, fileActionMap } = getState();
+    const {
+        sortActionId: oldActionId,
+        sortOrder: oldOrder,
+        fileActionMap,
+    } = getState();
     const action = fileActionMap[fileActionId];
     if (!action || !action.sortKeySelector) return;
 
@@ -128,7 +164,10 @@ export const thunkActivateSortAction = (fileActionId: Nilable<string>): ChonkyTh
     dispatch(reduxActions.setSort({ actionId: fileActionId, order: order }));
 };
 
-export const thunkApplySelectionTransform = (action: FileAction): ChonkyThunk => (dispatch, getState) => {
+export const thunkApplySelectionTransform = (action: FileAction): ChonkyThunk => (
+    dispatch,
+    getState
+) => {
     const selectionTransform = action.selectionTransform;
     if (!selectionTransform) return;
 
@@ -147,6 +186,8 @@ export const thunkApplySelectionTransform = (action: FileAction): ChonkyThunk =>
     if (newSelection.size === 0) {
         dispatch(reduxActions.clearSelection());
     } else {
-        dispatch(reduxActions.selectFiles({ fileIds: Array.from(newSelection), reset: true }));
+        dispatch(
+            reduxActions.selectFiles({ fileIds: Array.from(newSelection), reset: true })
+        );
     }
 };

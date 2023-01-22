@@ -4,8 +4,7 @@
  * @license MIT
  */
 
-import Box from '@material-ui/core/Box';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import {Box, Breadcrumbs} from '@mantine/core';
 import React, { ReactElement, useMemo } from 'react';
 
 import { ChonkyActions } from '../../action-definitions/index';
@@ -43,7 +42,6 @@ export const FileNavbar: React.FC<FileNavbarProps> = React.memo(() => {
                 <SmartToolbarButton fileActionId={ChonkyActions.OpenParentFolder.id} />
                 <Breadcrumbs
                     className={classes.navbarBreadcrumbs}
-                    classes={{ separator: classes.separator }}
                 >
                     {folderChainComponents}
                 </Breadcrumbs>
@@ -52,7 +50,7 @@ export const FileNavbar: React.FC<FileNavbarProps> = React.memo(() => {
     );
 });
 
-const useStyles = makeGlobalChonkyStyles(theme => ({
+const useStyles = makeGlobalChonkyStyles((theme) => ({
     navbarWrapper: {
         paddingBottom: theme.margins.rootLayoutMargin,
     },

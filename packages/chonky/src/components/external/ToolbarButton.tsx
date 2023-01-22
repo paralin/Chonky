@@ -29,7 +29,7 @@ export interface ToolbarButtonProps {
     dropdown?: boolean;
 }
 
-export const ToolbarButton: React.FC<ToolbarButtonProps> = React.memo(props => {
+export const ToolbarButton: React.FC<ToolbarButtonProps> = React.memo((props) => {
     const {
         className: externalClassName,
         text,
@@ -81,7 +81,7 @@ export const ToolbarButton: React.FC<ToolbarButtonProps> = React.memo(props => {
     );
 });
 
-const useStyles = makeGlobalChonkyStyles(theme => ({
+const useStyles = makeGlobalChonkyStyles((theme) => ({
     baseButton: {
         fontSize: important(theme.toolbar.fontSize),
         textTransform: important('none'),
@@ -114,7 +114,7 @@ export interface SmartToolbarButtonProps {
 }
 
 export const SmartToolbarButton: React.FC<SmartToolbarButtonProps> = React.memo(
-    props => {
+    (props) => {
         const { fileActionId } = props;
 
         const action = useParamSelector(selectFileActionData, fileActionId);
@@ -125,7 +125,11 @@ export const SmartToolbarButton: React.FC<SmartToolbarButtonProps> = React.memo(
         if (!action) return null;
         const { button } = action;
         if (!button) return null;
-        if (action.customVisibility !== undefined && action.customVisibility() === CustomVisibilityState.Hidden) return null;
+        if (
+            action.customVisibility !== undefined &&
+            action.customVisibility() === CustomVisibilityState.Hidden
+        )
+            return null;
 
         return (
             <ToolbarButton

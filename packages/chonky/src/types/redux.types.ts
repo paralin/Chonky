@@ -75,6 +75,11 @@ export type RootState = {
     contextMenuConfig: Nullable<ContextMenuConfig>;
 };
 
-export type ChonkyThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, null, Action<string>>;
+export type ChonkyThunk<ReturnType = void> = ThunkAction<
+    ReturnType,
+    RootState,
+    null,
+    Action<string>
+>;
 
 export type ChonkyDispatch = ThunkDispatch<RootState, null, Action<string>>;

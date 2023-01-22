@@ -33,7 +33,6 @@ export const useClickHandler = (
                 altKey: event.altKey,
                 ctrlKey: event.ctrlKey || event.metaKey,
                 shiftKey: event.shiftKey,
-
             };
 
             counter.current.clickCount++;

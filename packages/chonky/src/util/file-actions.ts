@@ -77,7 +77,8 @@ export const useFileActionProps = (
         let customDisabled = false;
         let customActive = false;
         if (action.customVisibility !== undefined) {
-            customDisabled = action.customVisibility() === CustomVisibilityState.Disabled;
+            customDisabled =
+                action.customVisibility() === CustomVisibilityState.Disabled;
             customActive = action.customVisibility() === CustomVisibilityState.Active;
         }
         const active =
@@ -85,8 +86,9 @@ export const useFileActionProps = (
             isFileViewButtonAndCurrentView ||
             isOptionAndEnabled ||
             customActive;
-        
-        let disabled: boolean = (!!action.requiresSelection && actionSelectionEmpty) || customDisabled;
+
+        let disabled: boolean =
+            (!!action.requiresSelection && actionSelectionEmpty) || customDisabled;
 
         if (action.id === ChonkyActions.OpenParentFolder.id) {
             // We treat `open_parent_folder` file action as a special case as it
