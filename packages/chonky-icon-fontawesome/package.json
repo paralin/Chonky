@@ -52,7 +52,7 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "^8.2.4",
     "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.10",
+    "@types/react-dom": "^18.0.11",
     "dts-cli": "^1.6.3",
     "husky": "^8.0.3",
     "react": "^18.2.0",
