@@ -53,7 +53,7 @@
   "devDependencies": {
     "@babel/core": "^7.13.10",
     "@size-limit/preset-small-lib": "^8.2.4",
-    "@testing-library/react": "^13.4.0",
+    "@testing-library/react": "^14.0.0",
     "babel-loader": "^9.1.2",
     "dts-cli": "^1.6.3",
     "husky": "^8.0.3",
