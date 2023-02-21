@@ -70,7 +70,7 @@
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.11.10",
     "@mui/styles": "^5.11.9",
-    "@reduxjs/toolkit": "^1.9.2",
+    "@reduxjs/toolkit": "^1.9.3",
     "@types/classnames": "^2.2.11",
     "@types/fuzzy-search": "^2.1.0",
     "@types/memoizee": "^0.4.5",
