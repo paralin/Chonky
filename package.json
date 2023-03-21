@@ -9,7 +9,7 @@
     "url": "https://foxypanda.me/"
   },
   "resolutions": {
-    "**/typescript": "4.2.2",
-    "**/immer": "8.0.4"
+    "**/typescript": "5.0.2",
+    "**/immer": "9.0.19"
   }
 }
