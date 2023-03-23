@@ -88,7 +88,7 @@
     "filesize": "^10.0.6",
     "fuzzy-search": "^3.2.1",
     "hotkeys-js": "^3.8.3",
-    "immer": "9.0.19",
+    "immer": "9.0.21",
     "react-dnd": "16.0.1",
     "react-dnd-html5-backend": "16.0.1",
     "react-intl": "^6.2.10",

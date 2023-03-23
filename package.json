@@ -10,6 +10,6 @@
   },
   "resolutions": {
     "**/typescript": "5.0.2",
-    "**/immer": "9.0.19"
+    "**/immer": "9.0.21"
   }
 }
