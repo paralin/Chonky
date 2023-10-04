@@ -1,10 +1,10 @@
 <p align="center">
     <img src="https://chonky.io/chonky-logo-v2.png" alt="Chonky v2 Logo" width="500" />
     <br />
-    <a href="https://www.npmjs.com/package/@aperturerobotics/chonky">
+    <a href="https://www.npmjs.com/package/@samuelncui/chonky">
         <img
             alt="NPM package"
-            src="https://img.shields.io/npm/v/@aperturerobotics/chonky.svg?style=flat&colorB=ffac5c"
+            src="https://img.shields.io/npm/v/@samuelncui/chonky.svg?style=flat&colorB=ffac5c"
         />
     </a>
     <a href="https://tldrlegal.com/license/mit-license">
@@ -39,14 +39,14 @@ This is a fork of [Chonky] by [TimboKZ].
 Add the forked npm packages:
 
 ```
-yarn add @aperturerobotics/chonky @aperturerobotics/chonky-icon-fontawesome
+yarn add @samuelncui/chonky @samuelncui/chonky-icon-fontawesome
 ```
 
 Add to your app:
 
 ```typescript
-import { FullFileBrowser } from '@aperturerobotics/chonky'
-import { ChonkyIconFA } from '@aperturerobotics/chonky-icon-fontawesome'
+import { FullFileBrowser } from '@samuelncui/chonky'
+import { ChonkyIconFA } from '@samuelncui/chonky-icon-fontawesome'
 
 export function MyComponent() {
     return <FullFileBrowser
@@ -59,11 +59,13 @@ export function MyComponent() {
 
 ### [Click here for documentation and examples.](https://chonky.io/)
 
-> Please [create an issue](https://github.com/aperturerobotics/react-chonky/issues) if you have a
+> Please [create an issue](https://github.com/samuelncui/Chonky/issues) if you have a
 > problem or want to request a feature.
 
 ## License
 
-MIT © Aperture Robotics, LLC. 2023
+MIT © Samuel N Cui. 2023
+
+MIT © [Aperture Robotics, LLC.](https://github.com/aperturerobotics/react-chonky) 2023
 
 MIT © [Tim Kuzhagaliyev](https://github.com/TimboKZ) 2020

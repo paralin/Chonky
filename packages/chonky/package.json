@@ -1,6 +1,6 @@
 {
-  "name": "@aperturerobotics/chonky",
-  "version": "0.2.6",
+  "name": "@samuelncui/chonky",
+  "version": "0.2.7",
   "description": "A File Browser component for React",
   "license": "MIT",
   "main": "dist/index.js",
@@ -33,7 +33,7 @@
   },
   "prettier": {
     "trailingComma": "es5",
-    "tabWidth": 4,
+    "tabWidth": 2,
     "semi": true,
     "singleQuote": true,
     "useTabs": false,
