@@ -1,4 +1,4 @@
-import React, { ReactElement, useMemo } from 'react';
+import React, { ReactElement, ReactNode, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 import { selectToolbarItems, selectHideToolbarInfo } from '../../redux/selectors';
@@ -10,7 +10,8 @@ import { ToolbarSearch } from './ToolbarSearch';
 
 export interface FileToolbarProps {}
 
-export const FileToolbar: React.FC<FileToolbarProps> = React.memo(() => {
+export const FileToolbar: React.FC<FileToolbarProps & { children?: ReactNode }> = React.memo((props) => {
+  const { children } = props;
   const classes = useStyles();
   const toolbarItems = useSelector(selectToolbarItems);
 
@@ -38,6 +39,7 @@ export const FileToolbar: React.FC<FileToolbarProps> = React.memo(() => {
         <div className={classes.toolbarLeft}>
           <ToolbarSearch />
           {!hideToolbarInfo && <ToolbarInfo />}
+          {children}
         </div>
         <div className={classes.toolbarRight}>{toolbarItemComponents}</div>
       </div>
