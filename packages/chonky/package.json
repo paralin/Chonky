@@ -15,7 +15,6 @@
   "scripts": {
     "start": "dts watch",
     "build": "dts build",
-    "test": "dts test --passWithNoTests",
     "lint": "dts lint",
     "prepare": "dts build",
     "size": "size-limit",
@@ -53,7 +52,6 @@
   "devDependencies": {
     "@babel/core": "^7.21.0",
     "@size-limit/preset-small-lib": "^8.2.4",
-    "@testing-library/react": "^14.0.0",
     "babel-loader": "^9.1.2",
     "dts-cli": "^1.6.3",
     "husky": "^8.0.3",
