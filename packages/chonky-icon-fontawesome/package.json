@@ -1,6 +1,6 @@
 {
   "name": "@aperturerobotics/chonky-icon-fontawesome",
-  "version": "0.2.2",
+  "version": "0.2.7",
   "description": "FontAwesome icon component for Chonky file browser",
   "license": "MIT",
   "main": "dist/index.js",
@@ -50,22 +50,22 @@
     }
   ],
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^8.2.4",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "dts-cli": "^1.6.3",
+    "@size-limit/preset-small-lib": "^9.0.0",
+    "@types/react": "^18.2.30",
+    "@types/react-dom": "^18.2.14",
+    "dts-cli": "^2.0.3",
     "husky": "^8.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "size-limit": "^8.2.4",
-    "tslib": "^2.5.0",
-    "typescript": "^5.0.0"
+    "size-limit": "^9.0.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
   },
   "dependencies": {
     "@aperturerobotics/chonky": "^0.2.2",
-    "@fortawesome/fontawesome-svg-core": "^6.3.0",
-    "@fortawesome/free-brands-svg-icons": "6.3.0",
-    "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-brands-svg-icons": "6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0"
   },
   "homepage": "https://chonky.io/",
