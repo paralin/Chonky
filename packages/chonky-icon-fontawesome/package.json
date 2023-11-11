@@ -50,14 +50,14 @@
     }
   ],
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^9.0.0",
+    "@size-limit/preset-small-lib": "^10.0.0",
     "@types/react": "^18.2.30",
     "@types/react-dom": "^18.2.14",
     "dts-cli": "^2.0.3",
     "husky": "^8.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "size-limit": "^9.0.0",
+    "size-limit": "^10.0.0",
     "tslib": "^2.6.2",
     "typescript": "^5.2.2"
   },
