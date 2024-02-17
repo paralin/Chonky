@@ -11,5 +11,8 @@
   "resolutions": {
     "**/typescript": "5.2.2",
     "**/immer": "10.0.3"
+  },
+  "scripts": {
+    "build": "cd ./packages/chonky && npm run build && cd ../chonky-icon-fontawesome && npm run build"
   }
 }

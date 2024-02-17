@@ -164,4 +164,4 @@ export const makeGlobalChonkyStyles = <C extends string = string>(
 
 export const important = <T>(value: T) => [value, '!important'];
 
-export const c = classnames;
+export const c: (...args: classNames.ArgumentArray) => string = classnames.default;

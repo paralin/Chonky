@@ -12,14 +12,14 @@ import { StartDragNDropPayload } from '../types/action-payloads.types';
 import { ChonkyDndDropResult, ChonkyDndFileEntryItem, ChonkyDndFileEntryType } from '../types/dnd.types';
 import { DndEntryState } from '../types/file-list.types';
 import { FileData } from '../types/file.types';
-import { ChonkyDispatch, ChonkyStore } from '../types/redux.types';
+import { ChonkyDispatch, ChonkyStore, RootState } from '../types/redux.types';
 import { useDragIfAvailable, useDropIfAvailable } from './dnd-fallback';
 import { FileHelper } from './file-helper';
 import { useInstanceVariable } from './hooks-helpers';
 
 export const useFileDrag = (file: Nullable<FileData>) => {
   // Prepare the dnd payload
-  const store: ChonkyStore = useStore();
+  const store: ChonkyStore = useStore<RootState>();
   const fileRef = useInstanceVariable(file);
   const getDndStartPayload = useCallback<() => StartDragNDropPayload>(() => {
     const reduxState = store.getState();
