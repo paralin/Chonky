@@ -9,8 +9,8 @@
     "url": "https://foxypanda.me/"
   },
   "resolutions": {
-    "**/typescript": "5.4.2",
-    "**/immer": "10.0.4"
+    "**/typescript": "5.4.5",
+    "**/immer": "10.1.1"
   },
   "scripts": {
     "build": "cd ./packages/chonky && npm run build && cd ../chonky-icon-fontawesome && npm run build"
