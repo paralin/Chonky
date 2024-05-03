@@ -1,6 +1,6 @@
 {
   "name": "@aperturerobotics/chonky-icon-fontawesome",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "description": "FontAwesome icon component for Chonky file browser",
   "license": "MIT",
   "main": "dist/index.js",
@@ -63,7 +63,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@aperturerobotics/chonky": "^0.2.8",
+    "@aperturerobotics/chonky": "^0.3.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-brands-svg-icons": "6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
