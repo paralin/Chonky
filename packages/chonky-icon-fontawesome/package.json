@@ -20,7 +20,8 @@
     "size": "size-limit",
     "analyze": "size-limit --why",
     "format": "prettier --config ../../.prettierrc.js --ignore-path ../../.prettierignore . --write",
-    "format-check": "prettier --config ../../.prettierrc.js --ignore-path ../../.prettierignore --check ."
+    "format-check": "prettier --config ../../.prettierrc.js --ignore-path ../../.prettierignore --check .",
+    "postinstall": "npm run build"
   },
   "peerDependencies": {
     "react": ">=16"
