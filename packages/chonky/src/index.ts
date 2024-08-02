@@ -1,4 +1,7 @@
-import { GenericFileActionHandler, MapFileActionsToData } from './types/action-handler.types';
+import {
+    GenericFileActionHandler,
+    MapFileActionsToData,
+} from './types/action-handler.types';
 import { ChonkyActionUnion } from './types/file-browser.types';
 
 export { FileBrowser } from './components/external/FileBrowser';
@@ -15,32 +18,37 @@ export { ChonkyIconContext } from './util/icon-helper';
 export { FileHelper } from './util/file-helper';
 export { makeGlobalChonkyStyles, ChonkyTheme } from './util/styles';
 
-export { FileData, FileArray } from './types/file.types';
-export {
-  FileAction,
-  FileActionEffect,
-  FileSelectionTransform,
-  FileActionButton,
-  CustomVisibilityState,
+export type { FileData, FileArray } from './types/file.types';
+export type {
+    FileAction,
+    FileActionEffect,
+    FileSelectionTransform,
+    FileActionButton,
+    CustomVisibilityState,
 } from './types/action.types';
-export {
-  GenericFileActionHandler,
-  MapFileActionsToData,
-  FileActionData,
-  FileActionState,
+export type {
+    GenericFileActionHandler,
+    MapFileActionsToData,
+    FileActionData,
+    FileActionState,
 } from './types/action-handler.types';
-export { ChonkyActionUnion } from './types/file-browser.types';
+export type { ChonkyActionUnion } from './types/file-browser.types';
 export { ChonkyIconName } from './types/icons.types';
 export type ChonkyIconProps = import('./types/icons.types').ChonkyIconProps;
-export { FileBrowserHandle, FileBrowserProps } from './types/file-browser.types';
-export { FileViewMode } from './types/file-view.types';
+export type { FileBrowserHandle, FileBrowserProps } from './types/file-browser.types';
+export type { FileViewMode } from './types/file-view.types';
 export type FileViewConfig = import('./types/file-view.types').FileViewConfig;
 export type FileViewConfigGrid = import('./types/file-view.types').FileViewConfigGrid;
 export type FileViewConfigList = import('./types/file-view.types').FileViewConfigList;
-export { ThumbnailGenerator } from './types/thumbnails.types';
+export type { ThumbnailGenerator } from './types/thumbnails.types';
 
-export { I18nConfig, ChonkyFormatters } from './types/i18n.types';
-export { defaultFormatters, getI18nId, getActionI18nId, I18nNamespace } from './util/i18n';
+export type { I18nConfig, ChonkyFormatters } from './types/i18n.types';
+export {
+    defaultFormatters,
+    getI18nId,
+    getActionI18nId,
+    I18nNamespace,
+} from './util/i18n';
 
 export { setChonkyDefaults } from './util/default-config';
 
@@ -57,4 +65,7 @@ export * from './extensions';
 export * from './redux/reducers';
 export * from './redux/store';
 export * from './redux/selectors';
-export { thunkDispatchFileAction, thunkRequestFileAction } from './redux/thunks/dispatchers.thunks';
+export {
+    thunkDispatchFileAction,
+    thunkRequestFileAction,
+} from './redux/thunks/dispatchers.thunks';
