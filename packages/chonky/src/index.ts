@@ -16,7 +16,7 @@ export { ChonkyActions, DefaultFileActions, OptionIds } from './action-definitio
 export { defineFileAction } from './util/helpers';
 export { ChonkyIconContext } from './util/icon-helper';
 export { FileHelper } from './util/file-helper';
-export { makeGlobalChonkyStyles, ChonkyTheme } from './util/styles';
+export type { makeGlobalChonkyStyles, ChonkyTheme } from './util/styles';
 
 export type { FileData, FileArray } from './types/file.types';
 export type {
