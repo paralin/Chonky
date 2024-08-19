@@ -65,7 +65,7 @@
   "dependencies": {
     "@aperturerobotics/chonky": "^0.3.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
-    "@fortawesome/free-brands-svg-icons": "6.5.2",
+    "@fortawesome/free-brands-svg-icons": "6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0"
   },
